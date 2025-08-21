@@ -13,10 +13,25 @@ class ProductController extends Controller
         $this->middleware('auth')->except(['index', 'show']);
     }
 
-    public function index(): \Illuminate\View\View
+    public function index(Request $request): \Illuminate\View\View
     {
-        $products = Product::latest()->paginate(12);
-        return view('products.index', compact('products'));
+        $search = $request->get('search');
+
+        $products = Product::query()
+            ->when($search, function ($query, $search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('name', 'like', '%' . $search . '%')
+                        ->orWhere('category', 'like', '%' . $search . '%');
+                });
+            })
+            ->latest()
+            ->paginate(12);
+
+        if ($search) {
+            $products->appends(['search' => $search]);
+        }
+
+        return view('products.index', compact('products', 'search'));
     }
 
     public function create(): \Illuminate\View\View
@@ -29,6 +44,7 @@ class ProductController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'price' => ['required', 'numeric', 'min:0'],
+            'category' => ['nullable', 'string', 'max:255'],
             'image' => ['nullable', 'image', 'max:2048'],
             'description' => ['nullable', 'string'],
         ]);
@@ -41,6 +57,7 @@ class ProductController extends Controller
         $product = Product::create([
             'name' => $validated['name'],
             'price' => $validated['price'],
+            'category' => $validated['category'] ?? null,
             'image_path' => $imagePath,
             'description' => $validated['description'] ?? null,
         ]);
@@ -63,6 +80,7 @@ class ProductController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'price' => ['required', 'numeric', 'min:0'],
+            'category' => ['nullable', 'string', 'max:255'],
             'image' => ['nullable', 'image', 'max:2048'],
             'description' => ['nullable', 'string'],
         ]);
@@ -70,6 +88,7 @@ class ProductController extends Controller
         $data = [
             'name' => $validated['name'],
             'price' => $validated['price'],
+            'category' => $validated['category'] ?? null,
             'description' => $validated['description'] ?? null,
         ];
 
@@ -82,7 +101,7 @@ class ProductController extends Controller
 
         $product->update($data);
 
-        return redirect()->route('products.show', $product)->with('status', 'Product updated.');
+        return redirect()->route('products.index')->with('status', 'Product updated.');
     }
 
     public function destroy(Product $product): \Illuminate\Http\RedirectResponse

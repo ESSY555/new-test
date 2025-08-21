@@ -85,14 +85,14 @@
                                         Category
                                     </span>
                                 </label>
-                                <select
+                                <select name="category"
                                     class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white focus:bg-white">
                                     <option value="">Select category</option>
-                                    <option value="electronics">Electronics</option>
-                                    <option value="clothing">Clothing</option>
-                                    <option value="books">Books</option>
-                                    <option value="home">Home & Garden</option>
-                                    <option value="sports">Sports & Outdoors</option>
+                                    <option value="electronics" {{ old('category') == 'electronics' ? 'selected' : '' }}>Electronics</option>
+                                    <option value="clothing" {{ old('category') == 'clothing' ? 'selected' : '' }}>Clothing</option>
+                                    <option value="books" {{ old('category') == 'books' ? 'selected' : '' }}>Books</option>
+                                    <option value="home" {{ old('category') == 'home' ? 'selected' : '' }}>Home & Garden</option>
+                                    <option value="sports" {{ old('category') == 'sports' ? 'selected' : '' }}>Sports & Outdoors</option>
                                 </select>
                             </div>
                             </div>
@@ -187,6 +187,15 @@
                                 Review your details before creating
                             </div>
                             <div class="flex items-center gap-3">
+                                <a href="{{ route('products.index') }}"
+                                    class="px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded-xl transition-colors duration-200 font-medium">
+                                    <span class="flex items-center">
+                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+                                        </svg>
+                                        View All Products
+                                    </span>
+                                </a>
                                 <a href="{{ route('products.index') }}"
                                     class="px-6 py-3 text-gray-700 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-medium">
                                     Cancel
