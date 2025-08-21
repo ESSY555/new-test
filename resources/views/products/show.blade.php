@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="max-w-2xl mx-auto">
-        <div class="bg-white rounded shadow overflow-hidden">
+        <div class="product-card bg-white rounded shadow overflow-hidden">
             @if ($product->image_path)
                 <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}" class="w-full h-64 object-cover">
             @endif

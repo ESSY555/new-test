@@ -22,3 +22,24 @@
 .btn-animate:active {
     @apply transform scale-95;
 }
+/* Product card breathing animation */
+.product-card {
+    @apply transition-all duration-700 ease-in-out;
+}
+
+.product-card:hover {
+    @apply transform scale-[1.02] shadow-xl;
+    animation: breathe 3s ease-in-out infinite;
+}
+
+@keyframes breathe {
+
+    0%,
+    100% {
+        transform: scale(1.02);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
