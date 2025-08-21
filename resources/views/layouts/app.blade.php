@@ -16,7 +16,8 @@
                     @auth
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <button class="px-3 py-1.5 rounded-md text-sm font-medium text-white bg-black hover:bg-gray-800 transition">Logout</button>
+                            <button
+                                class="btn-animate px-3 py-1.5 rounded-md text-sm font-medium text-white bg-black hover:bg-gray-800 transition">Logout</button>
                         </form>
                     @else
                         <a class="px-3 py-1.5 rounded-md text-sm font-medium text-gray-700 hover:text-black hover:bg-gray-100 transition" href="{{ route('login') }}">Login</a>
@@ -24,7 +25,8 @@
                     @endauth
                 </div>
 
-                <button id="mobile-menu-button" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:text-black hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition">
+                <button id="mobile-menu-button" aria-expanded="false" aria-controls="mobile-menu"
+                    class="btn-animate md:hidden inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:text-black hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition">
                     <svg id="icon-menu" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="3" y1="12" x2="21" y2="12" />
                         <line x1="3" y1="6" x2="21" y2="6" />
@@ -42,7 +44,8 @@
                     @auth
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <button class="w-full text-left px-3 py-2 rounded-md text-sm font-medium text-white bg-black hover:bg-gray-800 transition">Logout</button>
+                            <button
+                                class="btn-animate w-full text-left px-3 py-2 rounded-md text-sm font-medium text-white bg-black hover:bg-gray-800 transition">Logout</button>
                         </form>
                     @else
                         <a class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-black hover:bg-gray-100 transition" href="{{ route('login') }}">Login</a>

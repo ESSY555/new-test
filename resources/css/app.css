@@ -9,3 +9,16 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+/* Global button animation class */
+.btn-animate {
+    @apply cursor-pointer transition-all duration-200 ease-in-out;
+}
+
+.btn-animate:hover {
+    @apply transform scale-105 shadow-lg;
+}
+
+.btn-animate:active {
+    @apply transform scale-95;
+}
