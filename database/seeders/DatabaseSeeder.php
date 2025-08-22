@@ -22,5 +22,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Product::factory(12)->create();
+
+        // Seed categories for all products
+        $this->call(CategorySeeder::class);
     }
 }
