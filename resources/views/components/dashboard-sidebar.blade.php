@@ -1,11 +1,27 @@
 <!-- Dashboard Sidebar Component -->
-<div class="w-64 bg-white shadow-lg border-r border-gray-200 min-h-screen">
+<!-- Mobile Toggle Button (visible on small screens) -->
+<button id="mobileSidebarToggle"
+    class="md:hidden fixed top-20 left-4 z-50 bg-white border border-gray-200 rounded-lg p-2 shadow-lg hover:bg-gray-50 transition-colors duration-200">
+    <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+</button>
+
+<div id="dashboardSidebar"
+    class="w-64 bg-white shadow-lg border-r border-gray-200 min-h-screen transition-all duration-300 ease-in-out md:block hidden">
     <div class="p-6">
-        <!-- Sidebar Header -->
-        <div class="mb-6">
-            <h2 class="text-lg font-semibold text-gray-800 mb-2 px-3">Dashboard</h2>
-            <p class="text-sm text-gray-600 px-3">Overview and quick actions</p>
-        </div>
+        <!-- Sidebar Header with Toggle -->
+        <div class="flex justify-between items-start mb-6">
+            <div>
+                <h2 class="text-lg font-semibold text-gray-800 mb-2 px-3">Dashboard</h2>
+                <p class="text-sm text-gray-600 px-3">Overview and quick actions</p>
+            </div>
+            <button id="sidebarToggle" class="text-gray-500 hover:text-gray-700 transition-colors duration-200">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path>
+                </svg>
+            </button>
+            </div>
 
         <!-- Quick Actions -->
         <div class="mb-6">
@@ -166,5 +182,57 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Sidebar Toggle Functionality
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const mobileSidebarToggle = document.getElementById('mobileSidebarToggle');
+    const dashboardSidebar = document.getElementById('dashboardSidebar');
+    const mainContent = document.querySelector('.flex-1, .w-full');
+
+    // Desktop sidebar toggle
+    if (sidebarToggle && dashboardSidebar && mainContent) {
+        sidebarToggle.addEventListener('click', function () {
+            const isCollapsed = dashboardSidebar.classList.contains('w-0');
+
+            if (isCollapsed) {
+                // Expand sidebar
+                dashboardSidebar.classList.remove('w-0', 'overflow-hidden');
+                dashboardSidebar.classList.add('w-64');
+                mainContent.classList.remove('w-full');
+                mainContent.classList.add('flex-1');
+
+                // Update toggle icon
+                this.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path></svg>';
+            } else {
+                // Collapse sidebar
+                dashboardSidebar.classList.remove('w-64');
+                dashboardSidebar.classList.add('w-0', 'overflow-hidden');
+                mainContent.classList.remove('flex-1');
+                mainContent.classList.add('w-full');
+
+                // Update toggle icon
+                this.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
+            }
+        });
+    }
+
+    // Mobile sidebar toggle
+    if (mobileSidebarToggle && dashboardSidebar) {
+        mobileSidebarToggle.addEventListener('click', function () {
+            const isVisible = !dashboardSidebar.classList.contains('hidden');
+
+            if (isVisible) {
+                // Hide sidebar
+                dashboardSidebar.classList.add('hidden');
+                // Update mobile toggle icon
+                this.innerHTML = '<svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+            } else {
+                // Show sidebar
+                dashboardSidebar.classList.remove('hidden');
+                // Update mobile toggle icon
+                this.innerHTML = '<svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
+            }
+        });
+    }
 });
 </script>

@@ -5,7 +5,7 @@
 
         @include('components.dashboard-sidebar')
         <!-- Main Content -->
-        <div class="w-full p-6">
+        <div id="mainContent" class="flex-1 p-6 transition-all duration-300 ease-in-out">
             <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                     <!-- Search Section -->
@@ -163,11 +163,63 @@
                         }, 500);
                     });
 
-    // Set initial values from URL params
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('search')) productsSearchInput.value = urlParams.get('search');
-    if (urlParams.get('category')) productsCategoryFilter.value = urlParams.get('category');
-    </script>
+                            // Set initial values from URL params
+                            const urlParams = new URLSearchParams(window.location.search);
+                            if (urlParams.get('search')) productsSearchInput.value = urlParams.get('search');
+                            if (urlParams.get('category')) productsCategoryFilter.value = urlParams.get('category');
+
+    // Sidebar Toggle Functionality for Products Page
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const mobileSidebarToggle = document.getElementById('mobileSidebarToggle');
+    const dashboardSidebar = document.getElementById('dashboardSidebar');
+    const mainContent = document.getElementById('mainContent');
+
+    // Desktop sidebar toggle
+    if (sidebarToggle && dashboardSidebar && mainContent) {
+        sidebarToggle.addEventListener('click', function () {
+            const isCollapsed = dashboardSidebar.classList.contains('w-0');
+
+            if (isCollapsed) {
+                // Expand sidebar
+                dashboardSidebar.classList.remove('w-0', 'overflow-hidden');
+                dashboardSidebar.classList.add('w-64');
+                mainContent.classList.remove('w-full');
+                mainContent.classList.add('flex-1');
+
+                // Update toggle icon
+                this.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path></svg>';
+            } else {
+                // Collapse sidebar
+                dashboardSidebar.classList.remove('w-64');
+                dashboardSidebar.classList.add('w-0', 'overflow-hidden');
+                mainContent.classList.remove('flex-1');
+                mainContent.classList.add('w-full');
+
+                // Update toggle icon
+                this.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
+            }
+        });
+    }
+
+    // Mobile sidebar toggle
+    if (mobileSidebarToggle && dashboardSidebar) {
+        mobileSidebarToggle.addEventListener('click', function () {
+            const isVisible = !dashboardSidebar.classList.contains('hidden');
+
+            if (isVisible) {
+                // Hide sidebar
+                dashboardSidebar.classList.add('hidden');
+                // Update mobile toggle icon
+                this.innerHTML = '<svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+            } else {
+                // Show sidebar
+                dashboardSidebar.classList.remove('hidden');
+                // Update mobile toggle icon
+                this.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
+            }
+        });
+    }
+                 </script>
 @endsection
 
 
