@@ -1,25 +1,25 @@
 @extends('layouts.app')
 @section('main_class', 'min-h-screen p-0 m-0')
 @section('content')
-    <div class="flex w-full -ml-6 -mt-6">
+    <div class="flex w-full -mt-6">
         <!-- Dashboard Sidebar Component -->
         @include('components.dashboard-sidebar')
 
         <!-- Main Content -->
-        <div class="flex-1 p-6 pl-0">
+        <div class="flex-1 p-6 md:pl-0">
             <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
                 <!-- Header -->
                 <div class="bg-white shadow-sm border-b border-gray-200">
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div class="flex justify-between items-center py-6">
-                            <div>
-                                <h1 class="text-3xl font-bold text-gray-900">Edit Product</h1>
-                                <p class="text-gray-600 mt-1">Update product information</p>
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center py-4 sm:py-6 space-y-4 sm:space-y-0">
+                            <div class="text-center sm:text-left">
+                                <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Edit Product</h1>
+                                <p class="text-gray-600 mt-1 text-sm sm:text-base">Update product information</p>
                             </div>
-                            <div class="flex space-x-3">
+                            <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center sm:justify-end">
                                 <a href="{{ route('dashboard') }}"
-                                    class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg transition-colors duration-200 font-medium">
-                                    <span class="flex items-center">
+                                    class="bg-indigo-500 hover:bg-indigo-600 text-white px-3 sm:px-4 py-2 rounded-lg transition-colors duration-200 font-medium text-sm sm:text-base text-center">
+                                    <span class="flex items-center justify-center sm:justify-start">
                                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z">
@@ -27,29 +27,29 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v2H8V5z"></path>
                                         </svg>
                                         Dashboard
-                                        </span>
-                                        </a>
-                                        <a href="{{ route('products.show', $product) }}"
-                                            class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition-colors duration-200 font-medium">
-                                            <span class="flex items-center">
-                                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
-                                                    </path>
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
-                                                    </path>
-                                                </svg>
-                                                View Product
-                                            </span>
-                                        </a>
-                                        <a href="{{ route('products.index') }}"
-                                            class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition-colors duration-200 font-medium">
-                                            View All Products
-                                        </a>
+                                    </span>
+                                    </a>
+                                    <a href="{{ route('products.show', $product) }}"
+                                    class="bg-green-500 hover:bg-green-600 text-white px-3 sm:px-4 py-2 rounded-lg transition-colors duration-200 font-medium text-sm sm:text-base text-center">
+                                    <span class="flex items-center justify-center sm:justify-start">
+                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+                                            </path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                            </path>
+                                        </svg>
+                                        View Product
+                                    </span>
+                                </a>
+                                <a href="{{ route('products.index') }}"
+                                    class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 sm:px-4 py-2 rounded-lg transition-colors duration-200 font-medium text-sm sm:text-base text-center">
+                                    View All Products
+                                </a>
                             </div>
                         </div>
-                        </div>
-                        </div>
+                    </div>
+                    </div>
 
                 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                     <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">

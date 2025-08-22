@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('main_class', 'min-h-screen p-0 m-0')
 @section('content')
-    <div class="flex w-full -ml-6 -mt-6">
+    <div class="flex w-full -mt-6">
         <!-- Dashboard Sidebar Component -->
         @include('components.dashboard-sidebar')
 
         <!-- Main Content -->
-        <div class="flex-1 p-6 pl-0">
+        <div class="flex-1 p-6 md:pl-0">
             <div class="min-h-screen py-8 px-4">
                 <div class="max-w-4xl mx-auto">
                     <div class="text-center mb-8">
