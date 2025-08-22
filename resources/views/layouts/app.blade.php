@@ -14,6 +14,8 @@
 
                 <div class="hidden md:flex items-center gap-2">
                     @auth
+                        <a href="{{ route('dashboard') }}"
+                            class="px-3 py-1.5 rounded-md text-sm font-medium text-gray-700 hover:text-black hover:bg-gray-100 transition">Dashboard</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button
@@ -42,6 +44,8 @@
             <div id="mobile-menu" class="md:hidden hidden pb-3">
                 <div class="flex flex-col gap-2 pt-2">
                     @auth
+                        <a href="{{ route('dashboard') }}"
+                            class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-black hover:bg-gray-100 transition">Dashboard</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button

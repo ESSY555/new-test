@@ -15,7 +15,13 @@ class Product extends Model
         'category',
         'image_path',
         'description',
+        'user_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
 
 

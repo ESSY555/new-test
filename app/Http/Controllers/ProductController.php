@@ -16,6 +16,7 @@ class ProductController extends Controller
     public function index(Request $request): \Illuminate\View\View
     {
         $search = $request->get('search');
+        $category = $request->get('category');
 
         $products = Product::query()
             ->when($search, function ($query, $search) {
@@ -24,14 +25,20 @@ class ProductController extends Controller
                         ->orWhere('category', 'like', '%' . $search . '%');
                 });
             })
+            ->when($category, function ($query, $category) {
+                $query->where('category', $category);
+            })
             ->latest()
             ->paginate(12);
 
         if ($search) {
             $products->appends(['search' => $search]);
         }
+        if ($category) {
+            $products->appends(['category' => $category]);
+        }
 
-        return view('products.index', compact('products', 'search'));
+        return view('products.index', compact('products', 'search', 'category'));
     }
 
     public function create(): \Illuminate\View\View
@@ -60,6 +67,7 @@ class ProductController extends Controller
             'category' => $validated['category'] ?? null,
             'image_path' => $imagePath,
             'description' => $validated['description'] ?? null,
+            'user_id' => auth()->id(),
         ]);
 
         return redirect()->route('products.show', $product)->with('status', 'Product created.');

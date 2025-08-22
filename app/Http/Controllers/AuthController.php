@@ -22,7 +22,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
-            return redirect()->intended(route('products.index'));
+            return redirect()->intended(route('dashboard'));
         }
 
         return back()->withErrors([
@@ -51,7 +51,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('products.index');
+        return redirect()->route('dashboard');
     }
 
     public function logout(Request $request): \Illuminate\Http\RedirectResponse
